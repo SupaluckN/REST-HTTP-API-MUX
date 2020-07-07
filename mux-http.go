@@ -8,9 +8,7 @@ import (
 )
 
 type Customers struct {
-	
-	FFullName string `json:"fullName"`
-
+	FullName string `json:"fullName"`
 }
 
 var data []Customers = []Customers{}
