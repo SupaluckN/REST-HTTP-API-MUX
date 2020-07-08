@@ -7,6 +7,11 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type FullName struct {
+	FirstName string `json: "firstName"`
+	LastName  string `json: "lastName"`
+}
+
 type Address1 struct {
 	Address string `json: "address"`
 	City    string `json: "city"`
@@ -16,8 +21,10 @@ type Address1 struct {
 
 type Customer struct {
 	Id       int      `json: id`
-	FullName string   `json:"fullName"`
+	FullName FullName `json:"fullName"`
 	Address  Address1 `json:"address"`
+	Email    string   `json: "email"`
+	Phone    string   `json: "phone"`
 }
 
 var data []Customer = []Customer{}
