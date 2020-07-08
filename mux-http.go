@@ -7,11 +7,20 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type Customers struct {
-	FullName string `json:"fullName"`
+type Address1 struct {
+	Address string `json: "address"`
+	City    string `json: "city"`
+	Provice string `json: "provice"`
+	Zipcode string `json: "zipcode"`
 }
 
-var data []Customers = []Customers{}
+type Customer struct {
+	Id       int      `json: id`
+	FullName string   `json:"fullName"`
+	Address  Address1 `json:"address"`
+}
+
+var data []Customer = []Customer{}
 
 func main() {
 	router := mux.NewRouter() // r = router
@@ -21,11 +30,11 @@ func main() {
 
 func addItem(w http.ResponseWriter, r *http.Request) {
 	//w.Write([]byte("TEST"))
-	var newData Customers
+	var newData Customer
 	json.NewDecoder(r.Body).Decode(&newData)
 	data = append(data, newData)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
-	
+
 }
