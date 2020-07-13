@@ -30,13 +30,13 @@ type Customer struct {
 var data []Customer = []Customer{}
 
 func main() {
-	router := mux.NewRouter() // r = router
-	router.HandleFunc("/customers", addItem).Methods("POST")
-	http.ListenAndServe(":8888", router)
+	r := mux.NewRouter() // r = router
+	r.HandleFunc("/customers", addItem).Methods("POST")
+	http.ListenAndServe(":8888", r)
 }
 
 func addItem(w http.ResponseWriter, r *http.Request) {
-	//w.Write([]byte("TEST"))
+	//w.Write([]byte("Customers Details"))
 	var newData Customer
 	json.NewDecoder(r.Body).Decode(&newData)
 	data = append(data, newData)
